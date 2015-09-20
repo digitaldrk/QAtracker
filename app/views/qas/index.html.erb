@@ -1,0 +1,28 @@
+<div class="row">    
+  <div class="col-lg-6">
+    <%= simple_form_for @qa do |f| %>
+    <%= f.select(:member_id, @members.map {|t| [t.name, t.id] }) %>
+    <%= f.input :title %>
+    <%= f.button :submit %>
+    <% end %>
+  </div>
+  <div class="col-lg-6">
+    <% @members.each do |member| %>
+    <h3><%= member.name %></p>
+      <% member.qas.each do |qa| %>
+      <ul>
+        <li><%= qa.title %>
+          <% unless qa.completed? %>
+            <%= form_for(qa) do |f| %>
+              <input type="hidden" value="1" name="qa[completed]" id="qa_completed">
+              <%= f.submit "I'm done with this!", class: "button small radius" %>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+      <% end %>
+      <% end %>
+    </div>
+  </div>  
+
+  

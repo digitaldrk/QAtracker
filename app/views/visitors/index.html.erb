@@ -1,2 +1,41 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["gauge"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Total', <%= @qas.count > 0 ? ((@qas.where(:completed => true).count / @qas.count.to_f) * 100).to_i : 0 %>],
+          ['Creative', 80],
+          ['Media', 55],
+          ['Branding', 68]
+        ]);
+
+        var options = {
+          width: 400, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
 <h3>Welcome</h3>
 <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+
+
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <div id="chart_div" style="width: 400px; height: 120px;"></div>
+    </div>
+  </div>
+
+<!--<script>
+  setTimeout(function() {
+  window.location.reload(1);
+  }, 5000);
+</script>-->
