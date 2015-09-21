@@ -7,8 +7,8 @@
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
           ['Total', <%= @qas.count > 0 ? ((@qas.where(:completed => true).count / @qas.count.to_f) * 100).to_i : 0 %>],
-          ['Creative', 80],
-          ['Media', 55],
+          ['Creative', <%= @teamone.count > 0 ? ((@teamone.where(:completed => true).count / @teamone.count.to_f) * 100).to_i : 0 %>],
+          ['Media', <%= @teamtwo.count > 0 ? ((@teamtwo.where(:completed => true).count / @teamtwo.count.to_f) * 100).to_i : 0 %>],
           ['Branding', 68]
         ]);
 

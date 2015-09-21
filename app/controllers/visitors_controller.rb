@@ -1,10 +1,9 @@
 class VisitorsController < ApplicationController
 
   def index
-    puts @qas = Qa.all
-    puts @teams = Team.find(1).members
-
+    @qas = Qa.all
+    @teamone = Team.find(1).qas
+    @teamtwo = Team.find(2).qas
   end
-
 
 end
