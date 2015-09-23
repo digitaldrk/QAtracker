@@ -3,7 +3,7 @@
       google.load("visualization", "1", {packages:["gauge"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
-
+        
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
           ['Total', <%= @qas.count > 0 ? ((@qas.where(:completed => true).count / @qas.count.to_f) * 100).to_i : 0 %>],
@@ -11,7 +11,7 @@
           ['Media', <%= @teamtwo.count > 0 ? ((@teamtwo.where(:completed => true).count / @teamtwo.count.to_f) * 100).to_i : 0 %>],
           ['Branding', 68]
         ]);
-
+        
         var options = {
           width: 400, height: 120,
           redFrom: 90, redTo: 100,

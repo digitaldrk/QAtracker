@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Team</th>
+        <th>Members</th>
+        <th>Qa's</th>
+      </tr>
+    </thead>
+    <tbody>
+      <h1>Hi there</h1>
+      
+        <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.name %></td>
+          <% team.members.each do |member| %>
+          <td><%= member.name %>,</td>
+          <% member.qas.each do |qa| %>
+          <td><%= member.qas %></td>
+            <% end %>
+            <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p><%= link_to "Printable Version of this report (PDF)", qa_path(@teams, format: "pdf") %></p>

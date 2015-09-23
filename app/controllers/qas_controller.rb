@@ -5,6 +5,20 @@ class QasController < ApplicationController
     @qa = Qa.new
   end
 
+  def show
+    @teams = Team.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = Prawn::Document.new
+
+        send_data pdf.render, filename: "week_one.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
+end
+
   def create
     @qa = Qa.new(qa_params)
     respond_to do |format|

@@ -24,3 +24,4 @@ class TeamsController < ApplicationController
   end
 
 end
+
