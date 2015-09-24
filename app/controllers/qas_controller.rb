@@ -7,6 +7,7 @@ class QasController < ApplicationController
 
   def show
     @teams = Team.all
+    
     respond_to do |format|
       format.html
       format.pdf do
