@@ -1,28 +1,72 @@
-<div class="row">    
-  <div class="col-lg-6">
-    <%= simple_form_for @qa do |f| %>
-    <%= f.select(:member_id, @members.map {|t| [t.name, t.id] }) %>
-    <%= f.input :title %>
-    <%= f.button :submit %>
-    <% end %>
-  </div>
-  <div class="col-lg-6">
-    <% @members.each do |member| %>
-    <h3><%= member.name %></p>
-      <% member.qas.each do |qa| %>
-      <ul>
-        <li><%= qa.title %>
-          <% unless qa.completed? %>
-            <%= form_for(qa) do |f| %>
-              <input type="hidden" value="1" name="qa[completed]" id="qa_completed">
-              <%= f.submit "I'm done with this!", class: "button small radius" %>
-            <% end %>
-          <% end %>
-        </li>
-      </ul>
-      <% end %>
-      <% end %>
-    </div>
-  </div>  
+<div class="container">
+  <div class="col-sm-3">
+    <h3><i class="glyphicon glyphicon-briefcase"></i> Toolbox</h3>
 
-  
+    <hr>
+
+    <ul class="nav nav-stacked">
+      <li><%= link_to 'Users ' "<span class=\"glyphicon glyphicon-user\"></span>".html_safe, users_path %></li>
+      <li><%= link_to 'Teams ' "<span class=\"glyphicon glyphicon-flash\"></span>".html_safe, teams_path %></li>
+      <li><%= link_to 'Members ' "<span class=\"glyphicon glyphicon-sunglasses\"></span>".html_safe, members_path %></li>
+      <li class="selected">QA'S <i class="glyphicon glyphicon-list-alt"></i></li>
+    </ul>
+
+    <hr>
+
+  </div>
+  <div class="col-sm-9">
+    <h3><a title="Add Widget" data-toggle="modal" href="#addWidgetModal"><i class="glyphicon glyphicon-plus"></i> Add an Qa Item</h3></a>
+
+    <hr>
+
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h4>Remining Items</h4></div>
+        <div class="panel-body">
+          <% @members.each do |member| %>
+          <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#<%= member.name.remove(" ") %>" aria-expanded="false" aria-controls="collapseExample"><%= member.name %></button>
+          <div class="collapse" id="<%= member.name.remove(" ") %>">
+            <div class="well">
+              <h3><%= member.name %></h3>
+              <ul>
+                <% member.qas.each do |qa| %>
+                <% unless qa.completed? %>
+                <%= form_for(qa) do |f| %>
+                <li><%= qa.title %><input type="hidden" value="1" name="qa[completed]" id="qa_completed"> <%= f.submit "I'm done with this!", class: "button small radius" %></li>
+                <% end %>
+                <% end %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="modal" id="addWidgetModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Add Qa Item to a Member</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <%= simple_form_for @qa do |f| %>
+            <%= f.select(:member_id, @members.map {|t| [t.name, t.id] }) %>
+            <%= f.input :title %>
+            <%= f.button :submit %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

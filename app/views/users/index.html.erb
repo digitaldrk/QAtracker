@@ -1,8 +1,26 @@
 <div class="container">
-  <div class="row">
-    <h3>Users</h3>
-    <div class="column">
-      <table class="table">
+  <div class="col-sm-3">
+    <h3><i class="glyphicon glyphicon-briefcase"></i> Toolbox</h3>
+    
+    <hr>
+
+    <ul class="nav nav-stacked">
+      <li class="selected">Users <i class="glyphicon glyphicon-user"></i></li>
+      <li><%= link_to 'Teams ' "<span class=\"glyphicon glyphicon-flash\"></span>".html_safe, teams_path %></li>
+      <li><%= link_to 'Members ' "<span class=\"glyphicon glyphicon-sunglasses\"></span>".html_safe, members_path %></li>
+      <li><%= link_to 'QA\'s ' "<span class=\"glyphicon glyphicon-list-alt\"></span>".html_safe, qas_path %></li>
+    </ul>
+
+    <hr>
+
+  </div>
+    <div class="col-sm-9">
+      <h3><i class="glyphicon glyphicon-user"></i> Users</h3>  
+
+      <hr>
+
+      <div class="row">
+        <table class="table">
         <tbody>
           <% @users.each do |user| %>
             <tr>
@@ -11,6 +29,11 @@
           <% end %>
         </tbody>
       </table>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#"><strong><i class="glyphicon glyphicon-list-alt"></i> Reports</strong></a>
     </div>
   </div>
 </div>

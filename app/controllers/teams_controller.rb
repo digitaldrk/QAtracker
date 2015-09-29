@@ -1,7 +1,12 @@
 class TeamsController < ApplicationController
+  before_filter :authenticate_user!
   def index
     @users = User.all
     @team = Team.new
+    @teams = current_user.teams.all
+  end
+
+  def show
     @teams = Team.all
   end
 

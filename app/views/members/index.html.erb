@@ -1,18 +1,62 @@
-<div class="row">    
-    <div class="col-lg-6">
-        <%= simple_form_for @member do |f| %>
-          <%= f.select(:team_id, @teams.map {|t| [t.name, t.id] }) %>
-          <%= f.input :name %>
-          <%= f.button :submit %>
-        <% end %>
+<div class="container">
+  <div class="col-sm-3">
+    <h3><i class="glyphicon glyphicon-briefcase"></i> Toolbox</h3>
+
+    <hr>
+
+    <ul class="nav nav-stacked">
+      <li><%= link_to 'Users ' "<span class=\"glyphicon glyphicon-user\"></span>".html_safe, users_path %></li>
+      <li><%= link_to 'Teams ' "<span class=\"glyphicon glyphicon-flash\"></span>".html_safe, teams_path %></li>
+      <li class="selected">Members <i class="glyphicon glyphicon-sunglasses"></i></li>
+      <li><%= link_to 'QA\'s ' "<span class=\"glyphicon glyphicon-list-alt\"></span>".html_safe, qas_path %></li>
+    </ul>
+
+    <hr>
+
+  </div>
+  <div class="col-sm-9">
+    <h3><a title="Add Widget" data-toggle="modal" href="#addWidgetModal"><i class="glyphicon glyphicon-plus"></i> Add a New Member</h3></a>
+
+    <hr>
+
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h4>Team Progress</h4></div>
+        <div class="panel-body">
+          <% @teams.each do |team| %>
+          <h3><%= team.name %></h3>
+          <% team.members.each do |member| %>
+          <h4><%= member.name %></h4>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="col-lg-6">
-      <% @teams.each do |team| %>
-      <h3><%= team.name %></h3>
-      <% team.members.each do |member| %>
-      <h4><%= member.name %></h4>
-      <% end %>
-      <% end %>
-    </div>
+  </div>
 </div>
 
+
+
+
+<div class="modal" id="addWidgetModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Add Members To A Team</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">                
+          <div class="col-lg-12">
+            <h4>Select The Team You Want To Add A Member To:</h4>
+            <%= simple_form_for @member do |f| %>
+            <%= f.select(:team_id, @teams.map {|t| [t.name, t.id] }) %>
+            <%= f.input :name %>
+            <%= f.button :submit %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
