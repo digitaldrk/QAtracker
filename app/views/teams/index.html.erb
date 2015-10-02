@@ -7,8 +7,10 @@
     <ul class="nav nav-stacked">
       <li><%= link_to 'Users ' "<span class=\"glyphicon glyphicon-user\"></span>".html_safe, users_path %></li>
       <li class="selected">Teams <i class="glyphicon glyphicon-flash"></i></li>
+      <% unless @members.blank? %>
       <li><%= link_to 'Members ' "<span class=\"glyphicon glyphicon-sunglasses\"></span>".html_safe, members_path %></li>
       <li><%= link_to 'QA\'s ' "<span class=\"glyphicon glyphicon-list-alt\"></span>".html_safe, qas_path %></li>
+      <% end %>
     </ul>
 
     <hr>
@@ -49,7 +51,7 @@
         <div class="row">
           <div class="col-lg-12">
             <%= simple_form_for @team do |f| %>
-              <%= f.select(:user_id, @users.map {|u| [u.name, u.id] }) %>
+              <%= f.input :user_id, :collection => @users %>
               <%= f.input :name %>
               <%= f.button :submit %>
             <% end %>

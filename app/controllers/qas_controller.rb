@@ -1,8 +1,12 @@
 class QasController < ApplicationController
   def index
-    @members = Member.all
     @qas = Qa.all
     @qa = Qa.new
+    @members = Member.all
+    @teams = current_user.teams.all
+    @member = @teams.each do |team|
+      team.members
+    end
   end
 
   def show

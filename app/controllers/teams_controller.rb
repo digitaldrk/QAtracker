@@ -4,6 +4,9 @@ class TeamsController < ApplicationController
     @users = User.all
     @team = Team.new
     @teams = current_user.teams.all
+    @members = @teams.each do |team|
+      team.members
+    end
   end
 
   def show
