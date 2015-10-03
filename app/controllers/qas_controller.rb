@@ -30,7 +30,7 @@ end
       if @qa.save
         format.html { redirect_to qas_path, notice: "Great! You made a Qa item" }
       else
-        format.html { render :new }
+        format.html { redirect_to qas_path, alert: "Whoops! Don't forget to add a Title or Member" }
       end
     end
   end

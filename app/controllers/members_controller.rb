@@ -13,7 +13,7 @@ def create
       if @member.save
         format.html { redirect_to members_path, notice: "Great! You made a member" }
       else
-        format.html { render :new }
+        format.html { redirect_to members_path, alert: "Whoops! Maybe you missed a field, maybe that Member already exists."}
       end
     end
   end
