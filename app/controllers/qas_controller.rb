@@ -1,12 +1,13 @@
 class QasController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def index
     @qas = Qa.all
     @qa = Qa.new
     @members = Member.all
     @teams = current_user.teams.all
-    @member = @teams.each do |team|
-      team.members
-    end
+    @memlist = current_user.members.all
   end
 
   def show
