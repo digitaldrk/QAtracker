@@ -11,19 +11,9 @@ class QasController < ApplicationController
   end
 
   def show
-    @teams = Team.all
-    
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = Prawn::Document.new
-
-        send_data pdf.render, filename: "week_one.pdf",
-                              type: "application/pdf",
-                              disposition: "inline"
-      end
-    end
-end
+    @teams = current_user.teams.all
+    @timeframe = @teams.where(:created_at => 2.weeks.ago..Time.now)
+  end
 
   def create
     @qa = Qa.new(qa_params)

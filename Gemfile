@@ -12,13 +12,16 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
-gem 'prawn'
+gem 'prawn', '~> 2.0.2'
+gem "prawnto_2", :require => "prawnto"
+gem 'prawn-table', '~> 0.1.0'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'high_voltage'
 gem 'pg'
 gem 'puma'
 gem 'simple_form'
+gem 'mandrill-api'
 group :development do
   gem 'better_errors'
   gem 'foreman'

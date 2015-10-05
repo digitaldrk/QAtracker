@@ -80,6 +80,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    excon (0.45.3)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -110,6 +111,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.0)
@@ -122,6 +126,10 @@ GEM
     prawn (2.0.2)
       pdf-core (~> 0.6.0)
       ttfunk (~> 1.4.0)
+    prawn-table (0.1.2)
+    prawnto_2 (0.2.6)
+      prawn (>= 0.6.0)
+      rails (>= 3.1)
     puma (2.13.4)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -244,8 +252,11 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  mandrill-api
   pg
-  prawn
+  prawn (~> 2.0.2)
+  prawn-table (~> 0.1.0)
+  prawnto_2
   puma
   quiet_assets
   rails (= 4.2.1)
