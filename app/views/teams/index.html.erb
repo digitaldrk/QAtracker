@@ -1,48 +1,44 @@
 <div class="container">
   <div class="col-sm-3">
-    <h3><i class="glyphicon glyphicon-briefcase"></i> Toolbox</h3>
-
-    <hr>
-
     <ul class="nav nav-stacked">
       <li class="selected">Teams <i class="glyphicon glyphicon-flash"></i></li>
       <li><%= link_to 'Members ' "<span class=\"glyphicon glyphicon-sunglasses\"></span>".html_safe, members_path %></li>
       <li><%= link_to 'QA\'s ' "<span class=\"glyphicon glyphicon-list-alt\"></span>".html_safe, qas_path %></li>
     </ul>
 
-    <hr>
-
   </div>
-    <div class="col-sm-9">
-      <div class="row">
-      <div class="col-sm-4">
-        <h3 class="page-label">Add A New Team</h3>
-      </div>
-      <div class="col-sm-8 form-column">
-        <%= simple_form_for @team do |f| %>
-              <%= f.input :name, inline_label: 'Name', label: false %>
-              <%= f.button :submit %>
-            <% end %>
-      </div>
+  <div class="col-lg-9">
+    <div class="row">
+    <div class="col-lg-4">
+      <h3 class="page-label">Add A New Team</h3>
     </div>
+    <div class="col-lg-6">
+      <%= simple_form_for @team, html: { class: 'form-horizontal' },
+      wrapper: :horizontal_form do |f| %>
+      <%= f.input :name, inline_label: 'Name', label: false %>
+      </div>
+      <div class="col-lg-2">
+      <%= f.button :submit %>
+    </div>
+    <% end %>
+  </div>
 
-<hr>
-
-      <div class="row">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4>Team Progress</h4></div>
-          <div class="panel-body">
-              <% @teams.each do |team| %>
-                <small><%= team.name %>'s Progress <%= link_to "edit", edit_team_path(team) %></small>
-                <div class="progress">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: <%= team.qas.count > 0 ? ((team.qas.where(:completed => true).count / team.qas.count.to_f) * 100).to_i : 0 %>%">
-                    <span class="sr-only">72% Complete</span>
-                  </div>
-                </div>
-              <% end %>
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h4>Team Progress</h4></div>
+        <div class="panel-body">
+          <% @teams.each do |team| %>
+          <small><%= team.name %>'s Progress <%= link_to "edit", edit_team_path(team) %></small>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: <%= team.qas.count > 0 ? ((team.qas.where(:completed => true).count / team.qas.count.to_f) * 100).to_i : 0 %>%">
+              <span class="sr-only">72% Complete</span>
+            </div>
           </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 </div>

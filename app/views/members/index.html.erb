@@ -1,9 +1,5 @@
 <div class="container">
   <div class="col-sm-3">
-    <h3><i class="glyphicon glyphicon-briefcase"></i> Toolbox</h3>
-
-    <hr>
-
       <ul class="nav nav-stacked">
         <li><%= link_to 'Teams ' "<span class=\"glyphicon glyphicon-flash\"></span>".html_safe, teams_path %></li>
         <li class="selected">Members <i class="glyphicon glyphicon-sunglasses"></i></li>
@@ -11,14 +7,9 @@
         <li><%= link_to 'QA\'s ' "<span class=\"glyphicon glyphicon-list-alt\"></span>".html_safe, qas_path %></li>
         <% end %>
       </ul>
-
-    <hr>
-
   </div>
   <div class="col-sm-9">
     <h3><a title="Add Widget" data-toggle="modal" href="#addWidgetModal"><i class="glyphicon glyphicon-plus"></i> Add a New Member</h3></a>
-
-    <hr>
 
     <div class="row">
       <% @teams.each do |team| %>
