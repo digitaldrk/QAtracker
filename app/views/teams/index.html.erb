@@ -2,8 +2,12 @@
   <div class="col-sm-3">
     <ul class="nav nav-stacked">
       <li class="selected">Teams <i class="glyphicon glyphicon-flash"></i></li>
-      <li><%= link_to 'Members ' "<span class=\"glyphicon glyphicon-sunglasses\"></span>".html_safe, members_path %></li>
-      <li><%= link_to 'QA\'s ' "<span class=\"glyphicon glyphicon-list-alt\"></span>".html_safe, qas_path %></li>
+      <% unless @teams.blank? %>
+        <li><%= link_to 'Members ' "<span class=\"glyphicon glyphicon-sunglasses\"></span>".html_safe, members_path %></li>
+        <% end %>
+        <% unless @members.blank? %>
+        <li><%= link_to 'QA\'s ' "<span class=\"glyphicon glyphicon-list-alt\"></span>".html_safe, qas_path %></li>
+        <% end %>
     </ul>
 
   </div>
