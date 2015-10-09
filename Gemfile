@@ -22,7 +22,6 @@ gem 'pg'
 gem 'puma'
 gem 'simple_form'
 gem 'mandrill-api'
-gem 'whenever', :require => false
 group :development do
   gem 'better_errors'
   gem 'foreman'
