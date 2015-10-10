@@ -77,11 +77,11 @@ config.assets.compile = true
   config.action_mailer.smtp_settings = {
     address: "smtp.mandrillapp.com",
     port: 587,
-    domain: Rails.application.secrets.domain_name,
-    authentication: "plain",
+    domain: 'heroku.com',
+    authentication: :plain,
     enable_starttls_auto: true,
-    user_name: Rails.application.secrets.email_provider_username,
-    password: Rails.application.secrets.email_provider_apikey
+    user_name: ENV['MANDRILL_USERNAME'],
+    password: ENV['MANDRILL_APIKEY']
   }
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }
