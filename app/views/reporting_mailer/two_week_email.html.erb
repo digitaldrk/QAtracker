@@ -271,12 +271,12 @@
               <tr>
                 <td>
 
-                  <h1>Happy Friday <%= @user.name %>!</h1>
+                  <h1>Happy <%= Time.now.localtime.strftime("%A")%> <%= @user.name %>!</h1>
                   <p class="lead">Below is your report for this week ending on: <%= Time.now.localtime.strftime("%m/%d/%Y") %></p>
 
                   <!-- A Real Hero (and a real human being) -->
                   <p><img src="http://i.imgur.com/TtYVO.gif" /></p><!-- /hero -->
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                  <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>-->
                 </td>
               </tr>
             </table>
@@ -291,7 +291,9 @@
                 <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
                 <td>
                   <h4><%= team.name %>'s <small>WIG Report</small></h4>
-                  <p class=""><%= team.name %> has a WIG accomplishment of: <%= team.qas.count > 0 ? ((team.qas.where(:completed => true).count / team.qas.count.to_f) * 100).to_i : 0 %>%</p>
+                  <p class="">
+                    <%= team.name %> has a WIG accomplishment of: <%= team.qas.count > 0 ? ((team.qas.where(:completed => true)
+                    .where("qas.created_at >= ?", 2.weeks.ago.utc).count / team.qas.count.to_f) * 100).to_i : 0 %>%</p>
                 </td>
               </tr>
             </table>
