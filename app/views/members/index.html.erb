@@ -22,7 +22,7 @@
             <div id="<%= team.name.remove(" ") %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
               <% team.members.each do |member| %>
               <div class="panel-body">
-                  <p>Member Name: <%= member.name %><br> QA completion percentage: <%= member.qas.count > 0 ? ((member.qas.where(:completed => true).count / member.qas.count.to_f) * 100).to_i : 0 %>%</p>
+                  <p>Member Name: <%= member.name %><br> QA completion percentage: <%= member.qas.count > 0 ? ((member.qas.where(:completed => true).where("qas.created_at >= ?", 2.weeks.ago.utc).count / member.qas.count.to_f) * 100).to_i : 0 %>%</p>
               </div>
               <% end %>
             </div>

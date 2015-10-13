@@ -5,6 +5,7 @@
       <li><%= link_to 'Teams ' "<span class=\"glyphicon glyphicon-flash\"></span>".html_safe, teams_path %></li>
       <li><%= link_to 'Members ' "<span class=\"glyphicon glyphicon-sunglasses\"></span>".html_safe, members_path %></li>
       <li class="selected">QA'S <i class="glyphicon glyphicon-list-alt"></i></li>
+      <li><%= link_to "PDF report of last 2 weeks", qa_path(@teams, :format => "pdf") %></li>
     </ul>
 
   </div>

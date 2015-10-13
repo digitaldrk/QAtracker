@@ -2,7 +2,7 @@ class MembersController < ApplicationController
   before_action :authenticate_user!
   def index
     @teams = current_user.teams.all
-    @members = Member.all
+    @members = current_user.members.all
     @member = Member.new
   end
 

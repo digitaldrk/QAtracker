@@ -1,9 +1,8 @@
-Welcome to example.com, <%= @user.name %>
-===============================================
- 
-You have successfully signed up to example.com,
-your username is:.
- 
-To login to the site, just follow this link: <%= @url %>.
- 
-Thanks for joining and have a great day!
+Happy <%= Time.now.localtime.strftime("%A")%> <%= @user.name %>!
+
+Below is your report for this week ending on: <%= Time.now.localtime.strftime("%m/%d/%Y") %>
+
+<% @user.teams.each do |team| %>
+  <%= team.name %>'s WIG Report
+  <%= team.name %> has a WIG accomplishment of: <%= team.qas.count > 0 ? ((team.qas.where(:completed => true).where("qas.created_at >= ?", 2.weeks.ago.utc).count / team.qas.count.to_f) * 100).to_i : 0 %>%
+<% end %>
