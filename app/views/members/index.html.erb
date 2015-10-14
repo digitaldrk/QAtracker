@@ -1,15 +1,15 @@
 <div class="container">
   <div class="col-sm-3">
       <ul class="nav nav-stacked">
-        <li><%= link_to 'Teams ' "<span class=\"glyphicon glyphicon-flash\"></span>".html_safe, teams_path %></li>
-        <li class="selected">Members <i class="glyphicon glyphicon-sunglasses"></i></li>
+        <li><%= link_to '<i class="material-icons menu">people</i>'.html_safe, teams_path %></li>
+        <li class="selected"><i class="material-icons menu">person</i></li>
         <% unless @members.blank? %>
-        <li><%= link_to 'QA\'s ' "<span class=\"glyphicon glyphicon-list-alt\"></span>".html_safe, qas_path %></li>
+        <li><%= link_to '<i class="material-icons menu">done_all</i>'.html_safe, qas_path %></li>
         <% end %>
       </ul>
   </div>
   <div class="col-sm-9">
-    <h3><a title="Add Widget" data-toggle="modal" href="#addWidgetModal"><i class="glyphicon glyphicon-plus"></i> Add a New Member</h3></a>
+    <a title="Add Widget" data-toggle="modal" href="#addWidgetModal"><i class="material-icons menu">person_add</i></a>
 
     <div class="row">
       <% @teams.each do |team| %>
@@ -45,6 +45,7 @@
                 <h4>Select The Team You Want To Add A Member To:</h4>
                 <%= simple_form_for @member do |f| %>
                 <%= f.input :team_id, :collection => @teams %>
+                <p>Or add an existing member</p>
                 <%= f.input :name %>
                 <%= f.button :submit %>
                 <% end %>

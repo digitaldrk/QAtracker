@@ -4,6 +4,7 @@ class MembersController < ApplicationController
     @teams = current_user.teams.all
     @members = current_user.members.all
     @member = Member.new
+    @qas = Qa.all
   end
 
 def create

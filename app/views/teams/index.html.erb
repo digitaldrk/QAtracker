@@ -1,12 +1,12 @@
 <div class="container">
   <div class="col-sm-3">
     <ul class="nav nav-stacked">
-      <li class="selected">Teams <i class="glyphicon glyphicon-flash"></i></li>
+      <li class="selected"><i class="material-icons menu">people</i></li>
       <% unless @teams.blank? %>
-        <li><%= link_to 'Members ' "<span class=\"glyphicon glyphicon-sunglasses\"></span>".html_safe, members_path %></li>
+        <li><%= link_to '<i class="material-icons menu">person</i> '.html_safe, members_path %></li>
         <% end %>
         <% unless @members.blank? %>
-        <li><%= link_to 'QA\'s ' "<span class=\"glyphicon glyphicon-list-alt\"></span>".html_safe, qas_path %></li>
+        <li><%= link_to '<i class="material-icons menu">done_all</i>'.html_safe, qas_path %></li>
         <% end %>
     </ul>
 
@@ -14,7 +14,6 @@
   <div class="col-lg-9">
     <div class="row">
     <div class="col-lg-4">
-      <h3 class="page-label">Add A New Team</h3>
     </div>
     <div class="col-lg-6">
       <%= simple_form_for @team, html: { class: 'form-horizontal' },

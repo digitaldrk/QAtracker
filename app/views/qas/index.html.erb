@@ -2,10 +2,10 @@
   <div class="col-sm-3">
 
     <ul class="nav nav-stacked">
-      <li><%= link_to 'Teams ' "<span class=\"glyphicon glyphicon-flash\"></span>".html_safe, teams_path %></li>
-      <li><%= link_to 'Members ' "<span class=\"glyphicon glyphicon-sunglasses\"></span>".html_safe, members_path %></li>
-      <li class="selected">QA'S <i class="glyphicon glyphicon-list-alt"></i></li>
-      <li><%= link_to "PDF report of last 2 weeks", qa_path(@teams, :format => "pdf") %></li>
+      <li><%= link_to '<i class="material-icons menu">people</i>'.html_safe, teams_path %></li>
+      <li><%= link_to '<i class="material-icons menu">person</i>'.html_safe, members_path %></li>
+      <li class="selected"><i class="material-icons menu">done_all</i></li>
+      <li><%= link_to "PDF report of last 2 weeks", qa_path(@teams, :format => "pdf"), target: '_blank' %></li>
     </ul>
 
   </div>
@@ -25,7 +25,7 @@
                 </div>
                 <div id="<%= team.name.remove(" ") %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <% team.members.each do |member| %>
-                <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#<%= member.name.remove(" ") %>" aria-expanded="false" aria-controls="collapseExample"><%= member.name %></button>
+                <button class="btn btn-primary collapsed nuprin" type="button" data-toggle="collapse" data-target="#<%= member.name.remove(" ") %>" aria-expanded="false" aria-controls="collapseExample"><%= member.name %></button>
                 
                   <div class="collapse" id="<%= member.name.remove(" ") %>">
                     <div class="well">
