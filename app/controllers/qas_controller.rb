@@ -3,11 +3,13 @@ class QasController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    #might be able to get rid of @qas
     @qas = Qa.all
     @qa = Qa.new
+    #might be able to get rid of @members
     @members = Member.all
     @teams = current_user.teams.all
-    @memlist = current_user.members.all
+    @memlist = current_user.members.all.uniq
   end
 
   def show
@@ -35,7 +37,7 @@ class QasController < ApplicationController
   private
 
   def qa_params
-    params.require(:qa).permit(:title, :member_id, :completed)
+    params.require(:qa).permit(:title, :member_id, :completed, :description, :team_id)
   end
 
 end

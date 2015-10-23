@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014004130) do
+ActiveRecord::Schema.define(version: 20151021214102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "member_teams", force: :cascade do |t|
-    t.integer  "team_id"
-    t.integer  "member_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "members", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +23,13 @@ ActiveRecord::Schema.define(version: 20151014004130) do
     t.string   "profile_pic"
   end
 
+  create_table "members_teams", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "member_id"
+  end
+
+  add_index "members_teams", ["team_id", "member_id"], name: "index_members_teams_on_team_id_and_member_id", using: :btree
+
   create_table "qas", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at",                  null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20151014004130) do
     t.integer  "member_id"
     t.boolean  "completed",   default: false
     t.string   "description"
+    t.integer  "team_id"
   end
 
   add_index "qas", ["member_id"], name: "index_qas_on_member_id", using: :btree

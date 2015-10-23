@@ -44,11 +44,31 @@
               <div class="col-lg-12">
                 <h4>Select The Team You Want To Add A Member To:</h4>
                 <%= simple_form_for @member do |f| %>
-                <%= f.input :team_id, :collection => @teams %>
-                <p>Or add an existing member</p>
+                <%# f.input :team, :collection => @teams %>
+                <%= f.association :teams, as: :check_boxes %>
+                <%# f.association :member, :collection => @members %>
+                <!--<p>Or add an existing member</p>-->
                 <%= f.input :name %>
                 <%= f.button :submit %>
                 <% end %>
+
+
+              <%# form_tag(:action => 'create') do %>
+                <%# collection_select :team, :id, @teams, :id, :name %>
+                <%# text_field_tag('member[name]') %>
+                <!--<p>OR Select An Existing Team Member</p>-->
+                <%# collection_select(:member, :id, @members, :team_id, :name)%>
+                <%# submit_tag("Add Member") %>
+              <%# end %>
+
+              <%# form_for :member do |f| %>
+              <%# f.collection_select :teams, @teams, :id, :name %>
+              <%# f.text_field :name %>
+
+              <%# f.submit %>
+              <%# end %>
+
+
               </div>
             </div>
           </div>

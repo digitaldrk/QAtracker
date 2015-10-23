@@ -1,12 +1,10 @@
 class Member < ActiveRecord::Base
-  has_many :member_teams
-  has_many :teams, through: :member_teams
+  #attr_accessor :team
+  has_and_belongs_to_many :teams
   has_many :qas
-  validates :team, presence: true
-  validates :name, presence: true
-  validates :name, uniqueness: true
-
-  def team
-    teams.first
-  end
+  
+  
+  #validates :team, presence: true
+  #validates :name, presence: true
+  #validates :name, uniqueness: true
 end
