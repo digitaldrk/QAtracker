@@ -1,5 +1,5 @@
  <header class="flex-parent">
-  <h1 class="flex-child">DDDDX tracker</h1>
+  <h1 class="flex-child">FourDX tracker</h1>
   <div class="nav flex-child">
     <i class="material-icons">people</i>
     <% unless @teams.blank? %>
@@ -19,53 +19,51 @@
       <% @teams.each do |team| %>
       <div class= "member">
         <h3 class="member-name"><%= team.name %></h3>
-      <div id="team<%= team.id %>" class="member-progress" data-percent="<%= team.qas.count > 0 ? ((team.qas.where(:completed => true).count / team.qas.count.to_f) * 100).to_i : 0 %>">
+        <div id="team<%= team.id %>" class="member-progress" data-percent="<%= team.qas.count > 0 ? ((team.qas.where(:completed => true).count / team.qas.count.to_f) * 100).to_i : 0 %>">
+        </div>
       </div>
-    </div>
       <% end %>
     </div>
   </div>
 
-<div class="modal" id="addteam">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 class="modal-title">Add Qa Item to a Member</h4>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-lg-12">
-                  <%= simple_form_for @team do |f| %>
-                  <%= f.input :name %>
-                  <%= f.button :submit %>
-                  <% end %>
-                </div>
-              </div>
+  <div class="modal" id="addteam">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Add Qa Item to a Member</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <%= simple_form_for @team do |f| %>
+              <%= f.input :name %>
+              <%= f.button :submit %>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-
-
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script>
-    var teams = $('div[class=member-progress]');
-    $.each(teams, function(i,e){
-      var circle = new ProgressBar.Circle('#'+e.id, {
-        color: '#fcb034',
-        strokeWidth: 1,
-        trailWidth: 1,
-        duration: 1600,
-        easing: 'easeInOut',
-        text: {
-          value: '0'
-        },
-        step: function(state, bar) {
-          bar.setText((bar.value() * 100).toFixed()+ "%");
-        }
-      });
-      circle.animate(e.dataset.percent/100);
-    })
-    </script> 
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+  var teams = $('div[class=member-progress]');
+  $.each(teams, function(i,e){
+    var circle = new ProgressBar.Circle('#'+e.id, {
+      color: '#fcb034',
+      strokeWidth: 1,
+      trailWidth: 1,
+      duration: 1600,
+      easing: 'easeInOut',
+      text: {
+        value: '0'
+      },
+      step: function(state, bar) {
+        bar.setText((bar.value() * 100).toFixed()+ "%");
+      }
+    });
+    circle.animate(e.dataset.percent/100);
+  })
+  </script> 
