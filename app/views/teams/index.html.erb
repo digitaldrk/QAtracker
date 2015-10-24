@@ -1,47 +1,71 @@
-<div class="container">
-  <div class="col-sm-3">
-    <ul class="nav nav-stacked">
-      <li class="selected"><i class="material-icons menu">people</i></li>
-      <% unless @teams.blank? %>
-        <li><%= link_to '<i class="material-icons menu">person</i> '.html_safe, members_path %></li>
-        <% end %>
-        <% unless @members.blank? %>
-        <li><%= link_to '<i class="material-icons menu">done_all</i>'.html_safe, qas_path %></li>
-        <% end %>
-    </ul>
-
-  </div>
-  <div class="col-lg-9">
-    <div class="row">
-    <div class="col-lg-4">
-    </div>
-    <div class="col-lg-6">
-      <%= simple_form_for @team, html: { class: 'form-horizontal' },
-      wrapper: :horizontal_form do |f| %>
-      <%= f.input :name, inline_label: 'Name', label: false %>
-      </div>
-      <div class="col-lg-2">
-      <%= f.button :submit %>
-    </div>
+ <header class="flex-parent">
+  <h1 class="flex-child">DDDDX tracker</h1>
+  <div class="nav flex-child">
+    <i class="material-icons">people</i>
+    <% unless @teams.blank? %>
+    <%= link_to '<i class="material-icons active">person</i> '.html_safe, members_path %>
+    <% end %>
+    <% unless @members.blank? %>
+    <%= link_to '<i class="material-icons menu active">done_all</i>'.html_safe, qas_path %>
     <% end %>
   </div>
+  <i class="material-icons flex-child active"><a title="Add Widget" data-toggle="modal" href="#addteam">group_add</a></i>
+</header>
+<body>
 
-    <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading"><h4>Team Progress</h4></div>
-        <div class="panel-body">
-          <% @teams.each do |team| %>
-          <small><%= team.name %>'s Progress <%= link_to "edit", edit_team_path(team) %></small>
-          <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: <%= team.qas.count > 0 ? ((team.qas.where(:completed => true).count / team.qas.count.to_f) * 100).to_i : 0 %>%">
-              <span class="sr-only">72% Complete</span>
-            </div>
-          </div>
-          <% end %>
-        </div>
+  <div class="team">
+    <h2><%= current_user.name %></h2>
+    <div class="member-list flex-parent">
+      <% @teams.each do |team| %>
+      <div class= "member">
+        <h3 class="member-name"><%= team.name %></h3>
+      <div id="team<%= team.id %>" class="member-progress" data-percent="<%= team.qas.count > 0 ? ((team.qas.where(:completed => true).count / team.qas.count.to_f) * 100).to_i : 0 %>">
       </div>
     </div>
+      <% end %>
+    </div>
   </div>
-</div>
-</div>
-</div>
+
+<div class="modal" id="addteam">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title">Add Qa Item to a Member</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <%= simple_form_for @team do |f| %>
+                  <%= f.input :name %>
+                  <%= f.button :submit %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    var teams = $('div[class=member-progress]');
+    $.each(teams, function(i,e){
+      var circle = new ProgressBar.Circle('#'+e.id, {
+        color: '#fcb034',
+        strokeWidth: 1,
+        trailWidth: 1,
+        duration: 1600,
+        easing: 'easeInOut',
+        text: {
+          value: '0'
+        },
+        step: function(state, bar) {
+          bar.setText((bar.value() * 100).toFixed()+ "%");
+        }
+      });
+      circle.animate(e.dataset.percent/100);
+    })
+    </script> 
