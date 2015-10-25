@@ -1,5 +1,5 @@
 <header class="flex-parent">
-  <h1 class="flex-child">FourDX tracker</h1>
+  <h1 class="flex-child"><%= link_to 'FourDX tracker', root_path %></h1>
   <div class="nav flex-child">
     <%= link_to '<i class="material-icons menu active">people</i>'.html_safe, teams_path %>
     <%= link_to '<i class="material-icons active">person</i>'.html_safe, members_path %>
@@ -12,61 +12,60 @@
 
 <div class="team">
   <% @teams.each do |team| %>
-  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingTwo">
-        <h2>
-          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#<%= team.id %>" aria-expanded="false" aria-controls="<%= team.id %>"><%= team.name %></a>
-        </h2>
-      </div>
-    </div>
-
+  <div class="accordion">
+    <h2><%= team.name %></h2>
     <% team.members.each do |member| %>
-      <div id="<%= team.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-        <div class="member-list flex-parent">
-          <div class="panel-body">
-            <div class="member">
-              <h3> <%= member.name %></h3>
-              <ul>
-                <% member.qas.each do |qa| %>
-                  <% if qa.team_id == team.id %>
-                    <% unless qa.completed? %>
-                      <%= form_for(qa) do |f| %>
-                        <li><%= qa.title %><input type="hidden" value="1" name="qa[completed]"id="qa_completed"> <%= f.submit "I'm done with this!", class: "button small radius" %></li>
-                      <% end %>
+      <div class="member-list flex-parent">
+          <div class="member">
+            <h3> <%= member.name %></h3>
+            <ul>
+              <% member.qas.each do |qa| %>
+                <% if qa.team_id == team.id %>
+                  <% unless qa.completed? %>
+                    <%= form_for(qa) do |f| %>
+                      <li><%= qa.title %><input type="hidden" value="1" name="qa[completed]"id="qa_completed"> <%= f.submit "I'm done with this!", class: "button small radius" %></li>
                     <% end %>
                   <% end %>
                 <% end %>
-              </ul>
-            </div>
+              <% end %>
+            </ul>
           </div>
         </div>
-      </div>
-    </div>
     <% end %>
+  </div>
   <% end %>
 </div>
 
-  <div class="modal" id="addQAItem">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title">Add Qa Item to a Member</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-lg-12">
-              <%= simple_form_for @qa do |f| %>
-                <%= f.input :member_id, :collection => @memlist %>
-                <%= f.input :team_id, :collection => @teams %>
-                <%= f.input :title %>
-                <%= f.input :description, as: :text, :input_html => { class: 'test', :cols => 75, :rows => 4 } %>
-                <%= f.button :submit %>
-              <% end %>
-            </div>
+<div class="modal" id="addQAItem">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Add Qa Item to a Member</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <%= simple_form_for @qa do |f| %>
+            <%= f.input :member_id, :collection => @memlist %>
+            <%= f.input :team_id, :collection => @teams %>
+            <%= f.input :title %>
+            <%= f.input :description, as: :text, :input_html => { class: 'test', :cols => 75, :rows => 4 } %>
+            <%= f.button :submit %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<script>
+$(function() {
+  $( ".accordion").accordion({
+    collapsible: true,
+    active: false,
+    heightStyle: "content"
+  });
+});
+</script>
