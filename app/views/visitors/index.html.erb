@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="../../favicon.ico">
-  <title><%= content_for?(:title) ? yield(:title) : "I Love Lamp" %></title>
-  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Here is a thing made by a dude" %>">
+  <title><%= content_for?(:title) ? yield(:title) : "FourDX Tracker" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "An app for employees to easily enter and track WIG tasks" %>">
   <meta name="author" content="Derek Dyer">
   <%= stylesheet_link_tag 'visitor', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -18,39 +18,39 @@
       <![endif]-->
     </head>
     <body>
-    <header>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to 'Home', root_path, class: 'navbar-brand' %>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <%= render 'layouts/navigation_links' %>
-      </ul>
-    </div>
-  </div>
-</nav>
-</header>
-<main role="main">
+      <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+            </div>
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <%= render 'layouts/navigation_links' %>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main role="main">
        <%= render 'layouts/messages' %>
-<div class="everytime">
-  <div class="row everytime">
-    <div class="col-lg-8 col-lg-offset-2">
-      <h1><%= @qas.count > 0 ? ((@qas.where(:completed => true).where("created_at >= ?", 2.weeks.ago.utc).count / @qas.count.to_f) * 100).to_i : 0 %>% of the time... <br>It works everytime</h1>
-    </div>
-  </div>
-</div>
+       <div class="everytime">
+        <div class="row everytime">
+          <div class="col-lg-8 col-lg-offset-2">
+            <h1><%= @qas.count > 0 ? ((@qas.where(:completed => true).where("created_at >= ?", 2.weeks.ago.utc).count / @qas.count.to_f) * 100).to_i : 0 %>% of the time... <br>It works everytime</h1>
+          </div>
+        </div>
+      </div>
 
     </main>
   </body>
-</html>
+  </html>
 
 <!--\\<script>
   setTimeout(function() {

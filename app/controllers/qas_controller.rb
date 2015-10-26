@@ -1,13 +1,8 @@
 class QasController < ApplicationController
-
   before_filter :authenticate_user!
 
   def index
-    #might be able to get rid of @qas
-    @qas = Qa.all
     @qa = Qa.new
-    #might be able to get rid of @members
-    @members = Member.all
     @teams = current_user.teams.all
     @memlist = current_user.members.all.uniq
   end

@@ -3,9 +3,7 @@
   <div class="nav flex-child">
     <%= link_to '<i class="material-icons menu active">people</i>'.html_safe, teams_path %>
     <%= link_to '<i class="material-icons active">person</i>'.html_safe, members_path %>
-    <% unless @members.blank? %>
     <i class="material-icons menu">done_all</i>
-    <% end %>
   </div>
   <i class="material-icons flex-child active"><a title="Add Widget" data-toggle="modal" href="#addQAItem">person_add</a></i>
 </header>
