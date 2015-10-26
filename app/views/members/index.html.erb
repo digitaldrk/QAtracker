@@ -38,7 +38,7 @@
           <div class="col-lg-12">
             <h4>Select The Team You Want To Add A Member To:</h4>
             <%= simple_form_for @member do |f| %>
-            <%= f.association :teams, as: :check_boxes %>  
+            <%= f.association :teams, collection: current_user.teams, as: :select %>  
             <%= f.input :name %>
             <%= f.button :submit %>
             <% end %>

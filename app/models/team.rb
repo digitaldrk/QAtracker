@@ -3,6 +3,6 @@ class Team < ActiveRecord::Base
   has_and_belongs_to_many :members
   has_many :qas, through: :members
   
-  #validates :name, presence: true
-  #validates :name, uniqueness: true
+  validates :name, presence: true
+  validates :name, uniqueness: true
 end

@@ -3,7 +3,7 @@
   <div class="nav flex-child">
     <i class="material-icons">people</i>
     <% unless @teams.blank? %>
-    <%= link_to '<i class="material-icons active">person</i> '.html_safe, members_path %>
+    <%= link_to '<i class="material-icons active">person</i>'.html_safe, members_path %>
     <% end %>
     <% unless @members.blank? %>
     <%= link_to '<i class="material-icons menu active">done_all</i>'.html_safe, qas_path %>
