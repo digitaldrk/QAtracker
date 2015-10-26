@@ -9,22 +9,25 @@
   </div>
   <i class="material-icons flex-child active"><a title="Add Widget" data-toggle="modal" href="#addmember">person_add</a></i>
 </header>
+<body>
 
-<div class="team">
   <% @teams.each do |team| %>
+  <div class="team">
   <div class="accordion">
     <h2><%= team.name %></h2>
-    <% team.members.each do |member| %>
     <div class="member-list flex-parent">
+    <% team.members.each do |member| %>
       <div class="member">
-        <h3><%= member.name %></h3>
-        <div id="team<%= team.id %>" class="member-progress" data-percent="<%= member.qas.count > 0 ? ((member.qas.where(:completed => true).count / member.qas.count.to_f) * 100).to_i : 0 %>"></div>
+        <h3 class="member-name"><%= member.name %></h3>
+        <div id="member-progress<%= member.id %>" class="member-progress" data-percent="<%= member.qas.count > 0 ? ((member.qas.where(:completed => true).count / member.qas.count.to_f) * 100).to_i : 0 %>"></div>
       </div>
-    </div>
     <% end %>
+    </div>
+    </div>
   </div>
   <% end %>
-</div>
+  
+
 
 <div class="modal" id="addmember">
   <div class="modal-dialog">
@@ -78,3 +81,4 @@ $.each(teams, function(i,e){
   circle.animate(e.dataset.percent/100);
 })
 </script> 
+</body>

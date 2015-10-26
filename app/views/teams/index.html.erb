@@ -1,4 +1,4 @@
- <header class="flex-parent">
+<header class="flex-parent">
   <h1 class="flex-child"><%= link_to 'FourDX tracker', root_path %></h1>
   <div class="nav flex-child">
     <i class="material-icons">people</i>
@@ -11,8 +11,8 @@
   </div>
   <i class="material-icons flex-child active"><a title="Add Widget" data-toggle="modal" href="#addteam">group_add</a></i>
 </header>
-<body>
 
+<body>
   <div class="team">
     <h2><%= current_user.name %></h2>
     <div class="member-list flex-parent">
@@ -48,6 +48,7 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  
   <script>
   var teams = $('div[class=member-progress]');
   $.each(teams, function(i,e){
@@ -67,3 +68,4 @@
     circle.animate(e.dataset.percent/100);
   })
   </script> 
+</body>

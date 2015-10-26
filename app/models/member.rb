@@ -4,7 +4,7 @@ class Member < ActiveRecord::Base
   has_many :qas
   
   
-  #validates :team, presence: true
-  #validates :name, presence: true
-  #validates :name, uniqueness: true
+  validates :teams, presence: true
+  validates :name, presence: true
+  validates :name, uniqueness: true
 end

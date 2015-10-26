@@ -14,7 +14,7 @@ def create
       if @member.save
         format.html { redirect_to members_path, notice: "Great! You made a member" }
       else
-        format.html { redirect_to members_path, alert: "Whoops! Maybe you missed a field, maybe that Member already exists."}
+        format.html { redirect_to members_path, alert: "Whoops! You probably entered a name of a Member that already exists."}
       end
     end
   end
