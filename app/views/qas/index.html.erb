@@ -8,14 +8,15 @@
   <i class="material-icons flex-child active"><a title="Add Widget" data-toggle="modal" href="#addQAItem">person_add</a></i>
 </header>
 <body>
-<div class="team">
+
   <% @teams.each do |team| %>
+  <div class="team">
   <div class="accordion">
     <h2><%= team.name %></h2>
+    <div class="member-list flex-parent">
     <% team.members.each do |member| %>
-      <div class="member-list flex-parent">
           <div class="member">
-            <h3> <%= member.name %></h3>
+            <h3 class="member-name"> <%= member.name %></h3>
             <ul>
               <% member.qas.each do |qa| %>
                 <% if qa.team_id == team.id %>

@@ -13,4 +13,9 @@
  *= require framework_and_overrides.css.scss
  *= require_self
  *= require style.css
+ *= require main.css
  */
+
+#container {
+  z-index: -1;
+}

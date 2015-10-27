@@ -11,8 +11,11 @@
   </div>
   <i class="material-icons flex-child active"><a title="Add Widget" data-toggle="modal" href="#addteam">group_add</a></i>
 </header>
-
 <body>
+  
+  <div id="container">
+  </div>
+
   <div class="team">
     <h2><%= current_user.name %></h2>
     <div class="member-list flex-parent">
@@ -67,5 +70,7 @@
     });
     circle.animate(e.dataset.percent/100);
   })
-  </script> 
+  </script>
+
 </body>
+
