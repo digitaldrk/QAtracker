@@ -27,7 +27,7 @@
     <% team.members.each do |member| %>
       <div class="member">
         <h3 class="member-name"><%= member.name %></h3>
-        <div id="member-progress<%= member.id %>" class="member-progress" data-percent="<%= member.qas.count > 0 ? ((member.qas.where(:completed => true).count / member.qas.count.to_f) * 100).to_i : 0 %>"></div>
+        <div id="member-progress<%= team.id %><%= member.id %>" class="member-progress" data-percent="<%= team.members.where(:id == member.id).first.qas.count > 0 ? ((team.members.where(:id == member.id).first.qas.where(:completed => true).count / team.members.where(:id == member.id).first.qas.count.to_f) * 100).to_i : 0 %>"></div>
       </div>
     <% end %>
     </div>
@@ -47,7 +47,7 @@
       <div class="modal-body">
         <div class="row">                
           <div class="col-lg-12">
-            <h4>Select The Team You Want To Add A Member To:</h4>
+            <h4>Select The Team OR Teams You Want To Add A Member To:</h4>
             <%= simple_form_for @member do |f| %>
             <%= f.association :teams, collection: current_user.teams, as: :select %>  
             <%= f.input :name %>
