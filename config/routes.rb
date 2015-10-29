@@ -6,5 +6,4 @@ Rails.application.routes.draw do
   resources :members
   resources :qas
 
-  #post '/members' => 'members#add_member_to_team'
 end

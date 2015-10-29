@@ -4,7 +4,7 @@ class QasController < ApplicationController
   def index
     @qa = Qa.new
     @teams = current_user.teams.all
-    @memlist = current_user.members.all.uniq
+    @memlist = current_user.members.all
   end
 
   def show
@@ -19,7 +19,7 @@ class QasController < ApplicationController
         format.html { redirect_to qas_path, notice: "Great! You made a Qa item" }
       else
         format.html { redirect_to qas_path, alert: "Whoops! Don't forget to add a Title or Member" }
-      end
+      end   
     end
   end
 
