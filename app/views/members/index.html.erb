@@ -19,72 +19,75 @@
     </path>
   </svg>
 
-  <% @teams.each do |team| %>
+  <% @teams.each do |t| %>
   <div class="team">
-  <div class="accordion">
-    <h2><%= team.name %></h2>
-    <div class="member-list flex-parent">
-    <% team.members.each do |member| %>
-      <div class="member">
-        <h3 class="member-name"><%= link_to "#{member.name}", edit_member_path(member) %></h3>
-        <div id="member-progress<%= team.id %><%= member.id %>" class="member-progress" data-percent="<%= member.qas.count > 0 ? ((member.qas.where(:completed => true).count / member.qas.count.to_f) * 100).to_i : 0 %>"></div>
-      </div>
-    <% end %>
-    </div>
-    </div>
-  </div>
-  <% end %>
+    <div class="accordion">
+      <h2><%= t.name %></h2>
+      <div class="member-list flex-parent">
+        <% t.members.each do |m| %>
+        <div class="member">
+          <h3 class="member-name"><%= link_to "#{m.name}", edit_member_path(m) %></h3>
+          <div id="member-progress<%= t.id %><%= m.id %>" 
+            class="member-progress" 
+            data-percent="<%= m.qas.where(team_id: t.id).count > 0 ? ((m.qas.where(completed: true).where(team_id: t.id).count / m.qas.where(team_id: t.id).count.to_f) * 100).to_i : 0 %>"></div>
 
-<div class="modal" id="addmember">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Add Members To A Team or Teams</h4>
+          </div>
+          <% end %>
+        </div>
       </div>
-      <div class="modal-body">
-        <div class="row">                
-          <div class="col-lg-12">
-            <h4>Select The Team OR Teams You Want To Add A Member To:</h4>
-            <%= simple_form_for @member do |f| %>
-            <%= f.association :teams, collection: current_user.teams, as: :select %>  
-            <%= f.input :name %>
-            <%= f.button :submit %>
-            <% end %>
+    </div>
+    <% end %>
+
+    <div class="modal" id="addmember">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Add Members To A Team or Teams</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">                
+              <div class="col-lg-12">
+                <h4>Select The Team OR Teams You Want To Add A Member To:</h4>
+                <%= simple_form_for @member do |f| %>
+                <%= f.association :teams, collection: current_user.teams, as: :select %>  
+                <%= f.input :name %>
+                <%= f.button :submit %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<script>
-$(function() {
-  $( ".accordion").accordion({
-    collapsible: true,
-    active: false,
-    heightStyle: "content"
-  });
-});
-</script>
+    <script>
+    $(function() {
+      $( ".accordion").accordion({
+        collapsible: true,
+        active: false,
+        heightStyle: "content"
+      });
+    });
+    </script>
 
-<script>
-var teams = $('div[class=member-progress]');
-$.each(teams, function(i,e){
-  var circle = new ProgressBar.Circle('#'+e.id, {
-    color: '#fcb034',
-    strokeWidth: 1,
-    trailWidth: 1,
-    duration: 1600,
-    easing: 'easeInOut',
-    text: {
-      value: '0'
-    },
-    step: function(state, bar) {
-      bar.setText((bar.value() * 100).toFixed()+ "%");
-    }
-  });
-  circle.animate(e.dataset.percent/100);
-})
-</script> 
-</body>
+    <script>
+    var teams = $('div[class=member-progress]');
+    $.each(teams, function(i,e){
+      var circle = new ProgressBar.Circle('#'+e.id, {
+        color: '#fcb034',
+        strokeWidth: 1,
+        trailWidth: 1,
+        duration: 1600,
+        easing: 'easeInOut',
+        text: {
+          value: '0'
+        },
+        step: function(state, bar) {
+          bar.setText((bar.value() * 100).toFixed()+ "%");
+        }
+      });
+      circle.animate(e.dataset.percent/100);
+    })
+    </script> 
+  </body>
