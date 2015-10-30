@@ -1,6 +1,15 @@
+
 @media(min-width: 768px)    {
     .member-list    {
         width: 50%;
+    }
+    .modal {
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
     }
 }
 
@@ -151,15 +160,4 @@ button {
 
 .relative {
     position: relative;
-}
-
-.modal {
-    left:initial;
-    right: initial;
-    bottom: initial;
-    position: absolute;
-}
-
-.modal-content {
-    width: 25em;
 }
