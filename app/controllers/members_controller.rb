@@ -19,6 +19,21 @@ def create
     end
   end
 
+  def edit
+    @member = Member.find(params[:id])
+  end
+
+  def update
+    @member = Member.find(params[:id])
+    respond_to do |format|
+      if @member.update_attributes(member_params)
+        format.html { redirect_to members_path, notice: "You successfully changed that member's name." }
+      else 
+        format.html { redirect_to members_path, notice: "Things didn't go well" }
+      end
+    end
+  end
+
   private
 
   def member_params

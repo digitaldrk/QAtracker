@@ -13,14 +13,5 @@
  *= require framework_and_overrides.css.scss
  *= require_self
  *= require style.css
- *= require main.css
+ *= require node.css
  */
-
-#container {
-  z-index: -1;
-}
-
-.form-control {
-  margin-top: 15px;
-
-}

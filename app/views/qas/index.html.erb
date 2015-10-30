@@ -4,6 +4,7 @@
     <%= link_to '<i class="material-icons menu active">people</i>'.html_safe, teams_path %>
     <%= link_to '<i class="material-icons active">person</i>'.html_safe, members_path %>
     <i class="material-icons menu">done_all</i>
+    <%= link_to '<i class="material-icons active">assignment</i>'.html_safe, qa_path(@teams, :format => "pdf"), target: '_blank' %>
   </div>
   <i class="material-icons flex-child active"><a title="Add Widget" data-toggle="modal" href="#addQAItem">person_add</a></i>
 </header>

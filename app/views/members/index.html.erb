@@ -26,7 +26,7 @@
     <div class="member-list flex-parent">
     <% team.members.each do |member| %>
       <div class="member">
-        <h3 class="member-name"><%= member.name %></h3>
+        <h3 class="member-name"><%= link_to "#{member.name}", edit_member_path(member) %></h3>
         <div id="member-progress<%= team.id %><%= member.id %>" class="member-progress" data-percent="<%= team.members.where(:id == member.id).first.qas.count > 0 ? ((team.members.where(:id == member.id).first.qas.where(:completed => true).count / team.members.where(:id == member.id).first.qas.count.to_f) * 100).to_i : 0 %>"></div>
       </div>
     <% end %>
