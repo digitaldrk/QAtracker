@@ -1,12 +1,12 @@
 <header class="flex-parent">
   <h1 class="flex-child"><%= link_to 'FourDX tracker', root_path %></h1>
   <div class="nav flex-child">
-    <i class="material-icons">people</i>
+    <i class="material-icons active">people</i>
     <% unless @teams.blank? %>
-    <%= link_to '<i class="material-icons active">person</i>'.html_safe, members_path %>
+    <%= link_to '<i class="material-icons">person</i>'.html_safe, members_path %>
     <% end %>
     <% unless @members.blank? %>
-    <%= link_to '<i class="material-icons menu active">done_all</i>'.html_safe, qas_path %>
+    <%= link_to '<i class="material-icons menu">done_all</i>'.html_safe, qas_path %>
     <% end %>
   </div>
   <i class="material-icons flex-child active"><a title="Add Widget" data-toggle="modal" href="#addteam">group_add</a></i>
