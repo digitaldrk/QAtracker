@@ -148,3 +148,18 @@ button {
     color: #202859;
     border-color: #202859;
 }
+
+.relative {
+    position: relative;
+}
+
+.modal {
+    left:initial;
+    right: initial;
+    bottom: initial;
+    position: absolute;
+}
+
+.modal-content {
+    width: 25em;
+}
