@@ -27,15 +27,13 @@
     <% team.members.each do |member| %>
       <div class="member">
         <h3 class="member-name"><%= link_to "#{member.name}", edit_member_path(member) %></h3>
-        <div id="member-progress<%= team.id %><%= member.id %>" class="member-progress" data-percent="<%= team.members.where(:id == member.id).first.qas.count > 0 ? ((team.members.where(:id == member.id).first.qas.where(:completed => true).count / team.members.where(:id == member.id).first.qas.count.to_f) * 100).to_i : 0 %>"></div>
+        <div id="member-progress<%= team.id %><%= member.id %>" class="member-progress" data-percent="<%= member.qas.count > 0 ? ((member.qas.where(:completed => true).count / member.qas.count.to_f) * 100).to_i : 0 %>"></div>
       </div>
     <% end %>
     </div>
     </div>
   </div>
   <% end %>
-  
-
 
 <div class="modal" id="addmember">
   <div class="modal-dialog">
