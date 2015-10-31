@@ -80,7 +80,6 @@ section {
   @extend .btn-primary;
   @extend .btn-xs;
 }
-
 .navbar-static-top {
   margin-bottom:20px;
 }
@@ -170,7 +169,7 @@ height: auto;
         width: 50%;
     }
 }
-
+/*
 * {
     cursor: default;
     -webkit-touch-callout: none;
@@ -180,7 +179,7 @@ height: auto;
     -ms-user-select: none;
     user-select: none;
 }
-
+*/
 html, body  {
     font-family: Roboto;
     font-weight: 300;
