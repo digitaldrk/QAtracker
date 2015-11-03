@@ -207,7 +207,7 @@ h1, h2, h3, .progressbar-text {
 
 h2  {
     padding: 3rem 0;
-    margin: 3rem 0;
+    margin-bottom: -1px;
     text-align: center;
     border: 1px solid rgba(20,31,72,.15); 
     border-left: 0;
@@ -279,10 +279,6 @@ button {
     color: #202859;
 }
 
-.team   {
-    margin-bottom: 6rem;
-}
-
 .member-list    {
     margin: auto;
 }
@@ -321,7 +317,7 @@ ul  {
 }
 
 li  {
-    padding: 1rem;
+  padding: 1rem;
   border-top: 1px solid rgba(20,31,72,.15); 
 }
 
@@ -355,10 +351,6 @@ li:last-child {
     color: #202859;
 }
 
-.qa-no:hover  {
-    color: #DF2020;
-}
-
 .qa-yes:active {
     color: #fff;
     background-color: #202859;
@@ -366,8 +358,11 @@ li:last-child {
 
 input {
   appearance: none;
+  border: 0;
+  background-color: transparent;
+  outline: none;
 }
 
 h2 i {
-  padding-right: 0 0.5rem;
+  padding: 0 0.5rem;
 }

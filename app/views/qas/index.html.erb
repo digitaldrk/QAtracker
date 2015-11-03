@@ -68,7 +68,7 @@
             <% if qa.team_id == team.id %>
             <% unless qa.completed? %>
             <%= form_for(qa) do |f| %>
-            <li class="qa-item flex-parent"><p class="flex-item qa-name"><%= qa.title %></p><input type="hidden" value="1" name="qa[completed]"id="qa_completed"> <%= f.submit "done", class: "flex-item material-icons qa-buttons qa-yes" %></li>
+            <li class="qa-item flex-parent"><p class="flex-item qa-name"><%= qa.title %></p><input type="hidden" value="1" name="qa[completed]"id="qa_completed"> <%= f.submit "done", class: "flex-item material-icons qa-yes" %></li>
             <% end %>
             <% end %>
             <% end %>
@@ -78,8 +78,8 @@
         <% end %>
       </div>
     </div>
-    <% end %>
   </div>
+    <% end %>
 
   <script>
 //dynamic form selection
