@@ -189,6 +189,10 @@ html, body  {
     padding: 0;
 }
 
+body  {
+  font-size: 1.8rem;
+}
+
 p   {
     font-size: 1.6rem;
     font-weight: 400;
@@ -208,6 +212,7 @@ h2  {
     border: 1px solid rgba(20,31,72,.15); 
     border-left: 0;
     border-right: 0;
+    outline: none;
 }
 
 header  {
@@ -266,7 +271,8 @@ button {
 
 .material-icons  {
     font-size: 3.6rem !important;
-    color: rgba(20,31,72,.25)
+    color: rgba(20,31,72,.25);
+    vertical-align: middle;
 }
 
 .active {
@@ -296,35 +302,6 @@ button {
     margin: 2rem 0;
 }
 
-.qa-buttons {
-}
-
-.qa-buttons button {
-    transition: .15s all ease-in-out;
-    color: rgba(0,0,0,.25);
-    font-size: 2.4rem !important;
-    padding: 0;
-    margin: 0;
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 100px;
-}
-
-.qa-yes:hover {
-    color: #202859;
-}
-
-.qa-no:hover  {
-    color: #DF2020;
-}
-
-.qa-yes:active {
-    color: #202859;
-    border-color: #202859;
-}
-
 /*#nodegarden {
   opacity: .25;
 }*/
@@ -336,4 +313,61 @@ a {
 
 a:hover {
   color: #fcb034;
+}
+
+ul  {
+  list-style: none;
+  padding: 0;
+}
+
+li  {
+    padding: 1rem;
+  border-top: 1px solid rgba(20,31,72,.15); 
+}
+
+li:last-child {
+  border-bottom: 1px solid rgba(20,31,72,.15);
+}
+
+.qa-item  {
+  justify-content: space-between !important;
+}
+
+.qa-item button {
+    transition: .15s all ease-in-out;
+    color: rgba(0,0,0,.25);
+    font-size: 2.4rem !important;
+    padding: 0;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 100px;
+}
+
+.qa-name  {
+  margin: 0;
+  line-height: 40px;
+  padding-right: 1rem;
+}
+
+.qa-yes:hover {
+    color: #202859;
+}
+
+.qa-no:hover  {
+    color: #DF2020;
+}
+
+.qa-yes:active {
+    color: #fff;
+    background-color: #202859;
+}
+
+input {
+  appearance: none;
+}
+
+h2 i {
+  padding-right: 0 0.5rem;
 }
