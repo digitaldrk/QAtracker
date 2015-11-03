@@ -166,7 +166,7 @@ height: auto;
 
 @media(min-width: 768px)    {
     .member-list    {
-        width: 50%;
+        width: 75%;
     }
 }
 /*
@@ -217,7 +217,7 @@ h2  {
 
 header  {
     text-align: center;
-    padding: 6rem 0 3rem;
+    padding: 6rem 0;
 }
 
 input[type="text"]   {
@@ -270,7 +270,7 @@ button {
 }
 
 .material-icons  {
-    font-size: 3.6rem !important;
+    font-size: 3.6rem;
     color: rgba(20,31,72,.25);
     vertical-align: middle;
 }
@@ -280,7 +280,8 @@ button {
 }
 
 .member-list    {
-    margin: auto;
+    margin: 2rem auto;
+    width: 100%;
 }
 
 .member {
@@ -289,13 +290,13 @@ button {
 
 .member-name, h3    {
     text-align: center;
-    margin-top: 2rem;
+    margin: 2rem 0;
 }
 
 .member-progress  {
     width: 128px;
     height: 128px;
-    margin: 2rem 0;
+    margin-bottom: 2rem;
 }
 
 /*#nodegarden {
@@ -318,21 +319,16 @@ ul  {
 
 li  {
   padding: 1rem;
-  border-top: 1px solid rgba(20,31,72,.15); 
-}
-
-li:last-child {
-  border-bottom: 1px solid rgba(20,31,72,.15);
 }
 
 .qa-item  {
-  justify-content: space-between !important;
+  justify-content: space-between;
 }
 
 .qa-item button {
     transition: .15s all ease-in-out;
     color: rgba(0,0,0,.25);
-    font-size: 2.4rem !important;
+    font-size: 2.4rem;
     padding: 0;
     margin: 0;
     width: 40px;
