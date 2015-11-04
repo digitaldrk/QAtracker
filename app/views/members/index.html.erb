@@ -1,5 +1,5 @@
 <header class="flex-parent">
-  <h1 class="flex-child"><%= link_to 'FourDX tracker', root_path %></h1>
+  <h1 class="flex-child"><%= link_to image_tag("4dxlogo.svg"), root_path %></h1>
   <div class="nav flex-child">
     <%= link_to '<i class="material-icons menu">people</i>'.html_safe, teams_path %>
     <i class="material-icons active">person</i>
@@ -7,22 +7,14 @@
     <%= link_to '<i class="material-icons menu">done_all</i>'.html_safe, qas_path %>
     <% end %>
   </div>
-  <i class="material-icons flex-child active"><a title="Add Widget" data-toggle="modal" href="#addmember">person_add</a></i>
+  <i class="material-icons flex-child active"><a title="Add Members" data-toggle="modal" href="#addmember">person_add</a></i>
 </header>
 <body>
 
-  <div id="container">
-  </div>
-
-  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" class="moon">
-    <path d="M86.576,84.239c-0.102-0.44-0.448-0.781-0.889-0.876c-1.441-0.311-2.879-0.689-4.271-1.127  C66.969,77.707,55.8,66.938,50.77,52.692C45.739,38.445,47.67,23.05,56.07,10.454c0.812-1.218,1.692-2.415,2.617-3.559  c0.284-0.351,0.339-0.834,0.143-1.24C58.632,5.25,58.219,4.994,57.768,5c-4.879,0.064-9.708,0.928-14.354,2.568  c-23.396,8.261-35.71,34.016-27.449,57.412c8.261,23.397,34.017,35.711,57.414,27.45c4.645-1.64,8.945-3.999,12.783-7.014  C86.516,85.138,86.678,84.679,86.576,84.239z">
-    </path>
-  </svg>
-
   <% @teams.each do |t| %>
-  <div class="team">
+  <div class="team" id="icon<%= t.id %>">
     <div class="accordion">
-      <h2><%= t.name %></h2>
+      <h2><i id="icon<%= t.id %>x" class="material-icons" data-position="up">expand_more</i><%= t.name %></h2>
       <div class="member-list flex-parent">
         <% t.members.each do |m| %>
         <div class="member">
@@ -30,47 +22,60 @@
           <div id="member-progress<%= t.id %><%= m.id %>" 
             class="member-progress" data-percent="<%= m.qas.where(team_id: t.id).count > 0 ? ((m.qas.where(completed: true).where(team_id: t.id).where("qas.created_at >= ?", 2.weeks.ago.utc).count / m.qas.where(team_id: t.id).where("qas.created_at >= ?", 2.weeks.ago.utc).count.to_f) * 100).to_i : 100 %>">
           </div>
-          </div>
-          <% end %>
         </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
+  </div>
+  <% end %>
 
-    <div class="modal" id="addmember">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">Add Members To A Team or Teams</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">                
-              <div class="col-lg-12">
-                <h4>Select The Team OR Teams You Want To Add A Member To:</h4>
-                <%= simple_form_for @member do |f| %>
-                <%= f.association :teams, collection: current_user.teams, as: :select %>  
-                <%= f.input :name %>
-                <%= f.button :submit %>
-                <% end %>
-              </div>
+  <div class="modal" id="addmember">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Add Members To A Team or Teams</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">                
+            <div class="col-lg-12">
+              <h4>Select The Team OR Teams You Want To Add A Member To:</h4>
+              <%= simple_form_for @member do |f| %>
+              <%= f.association :teams, collection: current_user.teams, as: :select %>  
+              <%= f.input :name %>
+              <%= f.button :submit %>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script>
+  <script>
+    //accordion
     $(function() {
       $( ".accordion").accordion({
         collapsible: true,
         active: false,
         heightStyle: "content"
       });
-    });
-    </script>
 
-    <script>
+      <% @teams.each do |team| %>
+      $("#icon<%= team.id %>").click(function(){
+        var x = document.getElementById("icon<%= team.id %>x").getAttribute('data-position');
+        if (x == "up") {
+          document.getElementById("icon<%= team.id %>x").style.transform = "rotate(180deg)"; 
+          $("#icon<%= team.id %>x").attr('data-position', "down");       
+        }
+        else{
+          document.getElementById("icon<%= team.id %>x").style.transform = "rotate(0deg)";        
+          $("#icon<%= team.id %>x").attr('data-position', "up");       
+        };
+      })
+      <% end %>
+    });
+
     var teams = $('div[class=member-progress]');
     $.each(teams, function(i,e){
       var circle = new ProgressBar.Circle('#'+e.id, {
@@ -88,5 +93,7 @@
       });
       circle.animate(e.dataset.percent/100);
     })
+
+
     </script> 
   </body>
