@@ -43,7 +43,7 @@
        <div class="everytime">
         <div class="row everytime">
           <div class="col-lg-8 col-lg-offset-2">
-            <h1><%= @qas.count > 0 ? ((@qas.where(:completed => true).where("created_at >= ?", 2.weeks.ago.utc).count / @qas.count.to_f) * 100).to_i : 0 %>% of the time... <br>It works everytime</h1>
+            <h1><%= @qas.count > 0 ? ((@qas.where(:completed => true).where("created_at >= ?", 2.weeks.ago.utc).count / @qas.count.to_f) * 100).to_i : 100 %>% of the time... <br>It works everytime</h1>
           </div>
         </div>
       </div>
