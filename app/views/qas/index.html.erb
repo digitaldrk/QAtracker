@@ -7,13 +7,13 @@
     <%= link_to '<i class="material-icons">assignment</i>'.html_safe, qa_path(@teams, :format => "pdf"), target: '_blank' %>
   </div>
   <div class="flex-child relative">
-    <i class="material-icons flex-child active"><a title="Add WIG Item" data-toggle="modal" href="#addQAItem">person_add</a></i>
+    <i class="material-icons flex-child active"><a title="Add WIG Item" data-toggle="modal" href="#addQAItem">exposure_plus_1</a></i>
     <div class="modal" id="addQAItem">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">Add a WIG Item to a Member</h4>
+            <h4 class="modal-title">Add a Lead Measure Item to a Team Member</h4>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -23,18 +23,18 @@
                 <select name="qa[member_id]" class="select required form-control">
                   <option value="Choose information">Choose A Member</option>
                   <% if !@teams.blank? %>
-                  <% for item in @teams %>
-                  <% if !item.members.blank? %>
-                  <% for mem in item.members %>
-                  <option class="members" value="<%= mem.id %>" data-team-<%= item.id %>><%=mem.name%></option>
-                  <% end %>
-                  <% else %>
-                  <% end %>
-                  <% end %>
-                  <% else %>
+                    <% for item in @teams %>
+                      <% if !item.members.blank? %>
+                        <% for mem in item.members %>
+                        <option class="members" value="<%= mem.id %>" data-team-<%= item.id %>><%=mem.name%></option>
+                        <% end %>
+                        <% else %>
+                      <% end %>
+                    <% end %>
+                    <% else %>
                   <% end %>
                 </select>
-                <%= f.input :title, :placeholder => 'QA Title', label: false %>
+                <%= f.input :title, :placeholder => 'Title of Lead Measure', label: false %>
                 <%= f.button :submit %>
                 <% end %>
               </div>
