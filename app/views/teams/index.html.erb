@@ -20,7 +20,7 @@
       <% @teams.each do |team| %>
       <div class= "member">
         <h3 class="member-name"><%= link_to "#{team.name}", edit_team_path(team) %></h3>
-        <div id="team<%= team.id %>" class="member-progress" data-percent="<%= team.qas.count > 0 ? ((team.qas.where(:completed => true).where("qas.created_at >= ?", 2.weeks.ago.utc).count / team.qas.where("qas.created_at >= ?", 2.weeks.ago.utc).count.to_f) * 100).to_i : 100 %>">
+        <div id="team<%= team.id %>" class="member-progress" data-percent="<%= team.qas.count > 0 ? ((team.qas.where(:completed => true).where("team.qas.created_at >= ?", 2.weeks.ago.utc).count / team.qas.where("qas.created_at >= ?", 2.weeks.ago.utc).count.to_f) * 100) : 100 %>">
         </div>
       </div>
       <% end %>
