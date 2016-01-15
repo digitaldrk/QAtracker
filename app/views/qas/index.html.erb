@@ -35,6 +35,7 @@
                   <% end %>
                 </select>
                 <%= f.input :title, :placeholder => 'Title of Lead Measure', label: false %>
+                <%= f.input :description, label: 'Description (Optional)', :as => :text, :input_html => {:rows => 5} %>
                 <%= f.button :submit %>
                 <% end %>
               </div>
