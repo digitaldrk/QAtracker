@@ -1,20 +1,20 @@
 <div class="modal" id="addteam">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title">Add A Team</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-lg-12">
-              <%= simple_form_for @team do |f| %>
-              <%= f.input :name %>
-              <%= f.button :submit %>
-              <% end %>
-            </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Add A Team</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <%= simple_form_for @team do |f| %>
+            <%= f.input :name %>
+            <%= f.button :submit %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

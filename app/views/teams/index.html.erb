@@ -12,7 +12,6 @@
   <i class="material-icons flex-child active"><a title="Add a Team" data-toggle="modal" href="#addteam">group_add</a></i>
 </header>
 <body>
-
   <div class="team">
     <h2><%= current_user.name %></h2>
     <div class="member-list flex-parent">
@@ -25,9 +24,7 @@
       <% end %>
     </div>
   </div>
-
   <%= render "teamform" %>
-
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   
   <script>
@@ -42,13 +39,11 @@
       text: {
         value: '0'
       },
-      step: function(state, bar) {
-        bar.setText((bar.value() * 100).toFixed()+ "%");
-      }
+        step: function(state, bar) {
+          bar.setText((bar.value() * 100).toFixed()+ "%");
+        }
     });
     circle.animate(e.dataset.percent/100);
   })
   </script>
-
 </body>
-

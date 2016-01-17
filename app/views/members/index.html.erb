@@ -10,7 +10,6 @@
   <i class="material-icons flex-child active"><a title="Add Members" data-toggle="modal" href="#addmember">person_add</a></i>
 </header>
 <body>
-
   <% @teams.each do |t| %>
   <div class="team" id="icon<%= t.id %>">
     <div class="accordion">
@@ -19,7 +18,7 @@
         <% t.members.each do |m| %>
         <div class="member">
           <h3 class="member-name"><%= link_to "#{m.name}", edit_member_path(m) %></h3>
-          <div id="member-progress<%= t.id %><%= m.id %>" 
+          <div id="member-progress<%= t.id %><%= m.id %>"
             class="member-progress" data-percent="<%= m.qas.where(team_id: t.id).count > 0 ? ((m.qas.where(completed: true).where(team_id: t.id).where("qas.created_at >= ?", 2.weeks.ago.utc).count / m.qas.where(team_id: t.id).where("qas.created_at >= ?", 2.weeks.ago.utc).count.to_f) * 100) : 100 %>">
           </div>
         </div>
@@ -28,51 +27,45 @@
     </div>
   </div>
   <% end %>
-
-  <%= render "memberform" %>  
-
+  <%= render "memberform" %>
   <script>
-    //accordion
-    $(function() {
-      $( ".accordion").accordion({
-        collapsible: true,
-        active: false,
-        heightStyle: "content"
-      });
-
-      <% @teams.each do |team| %>
-      $("#icon<%= team.id %>").click(function(){
-        var x = document.getElementById("icon<%= team.id %>x").getAttribute('data-position');
-        if (x == "up") {
-          document.getElementById("icon<%= team.id %>x").style.transform = "rotate(180deg)"; 
-          $("#icon<%= team.id %>x").attr('data-position', "down");       
-        }
-        else{
-          document.getElementById("icon<%= team.id %>x").style.transform = "rotate(0deg)";        
-          $("#icon<%= team.id %>x").attr('data-position', "up");       
-        };
-      })
-      <% end %>
-    });
-
-    var teams = $('div[class=member-progress]');
-    $.each(teams, function(i,e){
-      var circle = new ProgressBar.Circle('#'+e.id, {
-        color: '#fcb034',
-        strokeWidth: 1,
-        trailWidth: 1,
-        duration: 1600,
-        easing: 'easeInOut',
-        text: {
-          value: '0'
-        },
-        step: function(state, bar) {
-          bar.setText((bar.value() * 100).toFixed()+ "%");
-        }
-      });
-      circle.animate(e.dataset.percent/100);
-    })
-
-
-    </script> 
-  </body>
+  //accordion
+  $(function() {
+  $( ".accordion").accordion({
+  collapsible: true,
+  active: false,
+  heightStyle: "content"
+  });
+  <% @teams.each do |team| %>
+  $("#icon<%= team.id %>").click(function(){
+  var x = document.getElementById("icon<%= team.id %>x").getAttribute('data-position');
+  if (x == "up") {
+  document.getElementById("icon<%= team.id %>x").style.transform = "rotate(180deg)";
+  $("#icon<%= team.id %>x").attr('data-position', "down");
+  }
+  else{
+  document.getElementById("icon<%= team.id %>x").style.transform = "rotate(0deg)";
+  $("#icon<%= team.id %>x").attr('data-position', "up");
+  };
+  })
+  <% end %>
+  });
+  var teams = $('div[class=member-progress]');
+  $.each(teams, function(i,e){
+  var circle = new ProgressBar.Circle('#'+e.id, {
+  color: '#fcb034',
+  strokeWidth: 1,
+  trailWidth: 1,
+  duration: 1600,
+  easing: 'easeInOut',
+  text: {
+  value: '0'
+  },
+  step: function(state, bar) {
+  bar.setText((bar.value() * 100).toFixed()+ "%");
+  }
+  });
+  circle.animate(e.dataset.percent/100);
+  })
+  </script>
+</body>

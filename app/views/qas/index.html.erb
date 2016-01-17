@@ -10,67 +10,62 @@
     <i class="material-icons flex-child active"><a title="Add WIG Item" data-toggle="modal" href="#addQAItem">exposure_plus_1</a></i>
     
     <%= render "qaform" %>
-
-</header>
-<body>
-  <% @teams.each do |team| %>
-  <div class="team" id="icon<%= team.id %>">
-    <div class="accordion">
-      <h2><i id="icon<%= team.id %>x" class="material-icons" data-position="up">expand_more</i><%= team.name %></h2>
-      <div class="member-list flex-parent">
-        <% team.members.each do |member| %>
-        <div class="member">
-          <h3 class="member-name"> <%= member.name %></h3>
-          <ul>
-            <% member.qas.each do |qa| %>
+  </header>
+  <body>
+    <% @teams.each do |team| %>
+    <div class="team" id="icon<%= team.id %>">
+      <div class="accordion">
+        <h2><i id="icon<%= team.id %>x" class="material-icons" data-position="up">expand_more</i><%= team.name %></h2>
+        <div class="member-list flex-parent">
+          <% team.members.each do |member| %>
+          <div class="member">
+            <h3 class="member-name"> <%= member.name %></h3>
+            <ul>
+              <% member.qas.each do |qa| %>
               <% if qa.team_id == team.id %>
-                <% unless qa.completed? %>
-                  <%= form_for(qa) do |f| %>
-                    <li class="qa-item flex-parent"><p class="flex-item qa-name"><%= qa.title %></p><input type="hidden" value="1" name="qa[completed]"id="qa_completed"> <%= f.submit "done", class: "flex-item material-icons qa-yes" %></li>
-                  <% end %>
-                <% end %>
+              <% unless qa.completed? %>
+              <%= form_for(qa) do |f| %>
+              <li class="qa-item flex-parent"><p class="flex-item qa-name"><%= qa.title %></p><input type="hidden" value="1" name="qa[completed]"id="qa_completed"> <%= f.submit "done", class: "flex-item material-icons qa-yes" %></li>
               <% end %>
-            <% end %>
-          </ul>
+              <% end %>
+              <% end %>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
         </div>
-        <% end %>
       </div>
     </div>
-  </div>
-  <% end %>
-
-<script>
-//dynamic form selection
-$(document).ready(function(){
-  $('#qa_team_id').change(function(){
-    $('.members').hide();
-    var selectedTeamID = $('#qa_team_id option:selected').val();
-    $('.members[data-team-'+selectedTeamID+']').show();
-
-  })
-})
-
-//accordion
-$(function() {
-  $( ".accordion").accordion({
-    collapsible: true,
-    active: false,
-    heightStyle: "content"
-  });
-
-  <% @teams.each do |team| %>
-  $("#icon<%= team.id %>").click(function(){
-    var x = document.getElementById("icon<%= team.id %>x").getAttribute('data-position');
-    if (x == "up") {
-      document.getElementById("icon<%= team.id %>x").style.transform = "rotate(180deg)"; 
-      $("#icon<%= team.id %>x").attr('data-position', "down");       
-    }
-    else{
-      document.getElementById("icon<%= team.id %>x").style.transform = "rotate(0deg)";        
-      $("#icon<%= team.id %>x").attr('data-position', "up");       
-    };
-  })
-  <% end %>
-});
-</script>
-</body>
+    <% end %>
+    <script>
+    //dynamic form selection
+      $(document).ready(function(){
+          $('#qa_team_id').change(function(){
+            $('.members').hide();
+            var selectedTeamID = $('#qa_team_id option:selected').val();
+            $('.members[data-team-'+selectedTeamID+']').show();
+          })
+        })
+        //accordion
+      $(function() {
+        $( ".accordion").accordion({
+          collapsible: true,
+          active: false,
+          heightStyle: "content"
+        });
+      <% @teams.each do |team| %>
+        $("#icon<%= team.id %>").click(function(){
+          var x = document.getElementById("icon<%= team.id %>x").getAttribute('data-position');
+          if (x == "up") {
+          document.getElementById("icon<%= team.id %>x").style.transform = "rotate(180deg)";
+          $("#icon<%= team.id %>x").attr('data-position', "down");
+          }
+          else{
+          document.getElementById("icon<%= team.id %>x").style.transform = "rotate(0deg)";
+          $("#icon<%= team.id %>x").attr('data-position', "up");
+          };
+        })
+      <% end %>
+      });
+    </script>
+  </body>

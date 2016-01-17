@@ -1,11 +1,11 @@
 <div class="team">
-    <h2><%= current_user.name %></h2>
-    <div class="member-list flex-parent">
-      <div class= "member">
-        <%= simple_form_for @team do |f| %>
-        <%= f.input :name, inline_label: 'Name', label: false %>
-        <%= f.button :submit %>
-        <% end %>        
-      </div>
+  <h2><%= current_user.name %></h2>
+  <div class="member-list flex-parent">
+    <div class= "member">
+      <%= simple_form_for @team do |f| %>
+      <%= f.input :name, inline_label: 'Name', label: false %>
+      <%= f.button :submit %>
+      <% end %>
     </div>
   </div>
+</div>

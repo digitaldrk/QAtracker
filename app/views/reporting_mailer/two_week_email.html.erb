@@ -234,138 +234,113 @@
     }
     </style>
 
-  </head>
-
-  <body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
-
-    <!-- HEADER -->
-    <table class="head-wrap" bgcolor="#999999">
-      <tr>
-        <td></td>
-        <td class="header container" align="">
-
-          <!-- /content -->
-          <div class="content">
-            <table bgcolor="#999999" >
-              <tr>
-                <td><img src="http://conferences.upcea.edu/annual2015/images/Bisked.jpg" /></td>
-                <td align="right"><h6 class="collapse">4DX report</h6></td>
-              </tr>
-            </table>
-          </div><!-- /content -->
-
-        </td>
-        <td></td>
-      </tr>
+</head>
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!-- HEADER -->
+<table class="head-wrap" bgcolor="#999999">
+  <tr>
+    <td></td>
+    <td class="header container" align="">
+      <!-- /content -->
+      <div class="content">
+        <table bgcolor="#999999" >
+          <tr>
+            <td><img src="http://conferences.upcea.edu/annual2015/images/Bisked.jpg" /></td>
+            <td align="right"><h6 class="collapse">4DX report</h6></td>
+          </tr>
+        </table>
+        </div><!-- /content -->
+      </td>
+      <td></td>
+    </tr>
     </table><!-- /HEADER -->
-
     <!-- BODY -->
     <table class="body-wrap" bgcolor="">
       <tr>
         <td></td>
         <td class="container" align="" bgcolor="#FFFFFF">
-
           <!-- content -->
           <div class="content">
             <table>
               <tr>
                 <td>
-
                   <h1>Happy <%= Time.now.localtime.strftime("%A")%> <%= @user.name %>!</h1>
                   <p class="lead">Below is your report for this week ending on: <%= Time.now.localtime.strftime("%m/%d/%Y") %></p>
-
                   <!-- A Real Hero (and a real human being) -->
                   <p><img src="http://i.imgur.com/TtYVO.gif" /></p><!-- /hero -->
                   <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>-->
                 </td>
               </tr>
             </table>
-          </div><!-- /content -->
-
-          <!-- content -->
-          <div class="content">
-
-          <% @user.teams.each do |team| %>
-            <table bgcolor="">
-              <tr>
-                <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
-                <td>
-                  <h4><%= team.name %>'s <small>WIG Report</small></h4>
-                  <p class="">
-                    <%= team.name %> has a WIG accomplishment of: <%= team.qas.count > 0 ? ((team.qas.where(:completed => true)
-                    .where("qas.created_at >= ?", 2.weeks.ago.utc).count / team.qas.count.to_f) * 100).to_i : 0 %>%</p>
-                </td>
-              </tr>
-            </table>
-          <% end %>
-          </div><!-- /content -->
-
-          <!-- content -->
-          <div class="content">
-            <table bgcolor="">
-              <tr>
-                <td>
-
-                  <!-- social & contact -->
-                  <table bgcolor="" class="social" width="100%">
-                    <tr>
-                      <td>
-
-                        <!--- column 1 -->
-                        <div class="column">
-                          <table bgcolor="" cellpadding="" align="left">
-                            <tr>
-                              <td>        
-
-                                <h5 class="">Connect with Us:</h5>
-                                <p class=""><a href="https://www.facebook.com/Bisk-Education-Inc-152861984786484/timeline/" class="soc-btn fb">Facebook</a> <a href="https://twitter.com/biskeducation" class="soc-btn tw">Twitter</a> <a href="https://www.linkedin.com/company/15876" class="soc-btn gp">LinkedIn</a></p>
-
-
-                              </td>
-                            </tr>
-                          </table><!-- /column 1 -->
-                        </div>
-
-
-                          <div class="clear"></div>
-
-                        </td>
-                      </tr>
-                    </table><!-- /social & contact -->
-
-                  </td>
-                </tr>
-              </table>
             </div><!-- /content -->
-
-          </td>
-          <td></td>
-        </tr>
-      </table><!-- /BODY -->
-
-      <!-- FOOTER -->
-      <table class="footer-wrap">
-        <tr>
-          <td></td>
-          <td class="container">
-
             <!-- content -->
             <div class="content">
-              <table>
+              <% @user.teams.each do |team| %>
+              <table bgcolor="">
                 <tr>
-                  <td align="center">
-                    <p>
-                      <a href="https://youtu.be/dQw4w9WgXcQ?t=42s"><unsubscribe>Unsubscribe</unsubscribe></a>
-                    </p>
+                  <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
+                  <td>
+                    <h4><%= team.name %>'s <small>WIG Report</small></h4>
+                    <p class="">
+                      <%= team.name %> has a WIG accomplishment of: <%= team.qas.count > 0 ? ((team.qas.where(:completed => true)
+                    .where("qas.created_at >= ?", 2.weeks.ago.utc).count / team.qas.count.to_f) * 100).to_i : 0 %>%</p>
                   </td>
                 </tr>
               </table>
-            </div><!-- /content -->
-
-          </td>
-          <td></td>
-        </tr>
-      </table><!-- /FOOTER -->
-
-    </body>
-    </html>
+              <% end %>
+              </div><!-- /content -->
+              <!-- content -->
+              <div class="content">
+                <table bgcolor="">
+                  <tr>
+                    <td>
+                      <!-- social & contact -->
+                      <table bgcolor="" class="social" width="100%">
+                        <tr>
+                          <td>
+                            <!--- column 1 -->
+                            <div class="column">
+                              <table bgcolor="" cellpadding="" align="left">
+                                <tr>
+                                  <td>
+                                    <h5 class="">Connect with Us:</h5>
+                                    <p class=""><a href="https://www.facebook.com/Bisk-Education-Inc-152861984786484/timeline/" class="soc-btn fb">Facebook</a> <a href="https://twitter.com/biskeducation" class="soc-btn tw">Twitter</a> <a href="https://www.linkedin.com/company/15876" class="soc-btn gp">LinkedIn</a></p>
+                                  </td>
+                                </tr>
+                                </table><!-- /column 1 -->
+                              </div>
+                              <div class="clear"></div>
+                            </td>
+                          </tr>
+                          </table><!-- /social & contact -->
+                        </td>
+                      </tr>
+                    </table>
+                    </div><!-- /content -->
+                  </td>
+                  <td></td>
+                </tr>
+                </table><!-- /BODY -->
+                <!-- FOOTER -->
+                <table class="footer-wrap">
+                  <tr>
+                    <td></td>
+                    <td class="container">
+                      <!-- content -->
+                      <div class="content">
+                        <table>
+                          <tr>
+                            <td align="center">
+                              <p>
+                                <a href="https://youtu.be/dQw4w9WgXcQ?t=42s"><unsubscribe>Unsubscribe</unsubscribe></a>
+                              </p>
+                            </td>
+                          </tr>
+                        </table>
+                        </div><!-- /content -->
+                      </td>
+                      <td></td>
+                    </tr>
+                    </table><!-- /FOOTER -->
+                  </body>
+                </html>

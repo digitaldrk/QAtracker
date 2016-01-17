@@ -1,37 +1,37 @@
-     <div class="modal" id="addQAItem">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">Add a Lead Measure Item to a Team Member</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <%= simple_form_for @qa do |f| %>
-                <%= f.input :team_id, :collection => @teams, :include_blank => 'Choose A Team', label: false %>
-                <select name="qa[member_id]" class="select required form-control">
-                  <option value="Choose information">Choose A Member</option>
-                  <% if !@teams.blank? %>
-                  <% for item in @teams %>
-                  <% if !item.members.blank? %>
-                  <% for mem in item.members %>
-                  <option class="members" value="<%= mem.id %>" data-team-<%= item.id %>><%=mem.name%></option>
-                  <% end %>
-                  <% else %>
-                  <% end %>
-                  <% end %>
-                  <% else %>
-                  <% end %>
-                </select>
-                <%= f.input :title, :placeholder => 'Title of Lead Measure', label: false %>
-                <%= f.input :description, label: 'Description (Optional)', :as => :text, :input_html => {:rows => 5} %>
-                <%= f.button :submit %>
-                <% end %>
-              </div>
-            </div>
+<div class="modal" id="addQAItem">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Add a Lead Measure Item to a Team Member</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <%= simple_form_for @qa do |f| %>
+            <%= f.input :team_id, :collection => @teams, :include_blank => 'Choose A Team', label: false %>
+            <select name="qa[member_id]" class="select required form-control">
+              <option value="Choose information">Choose A Member</option>
+              <% if !@teams.blank? %>
+              <% for item in @teams %>
+              <% if !item.members.blank? %>
+              <% for mem in item.members %>
+              <option class="members" value="<%= mem.id %>" data-team-<%= item.id %>><%=mem.name%></option>
+              <% end %>
+              <% else %>
+              <% end %>
+              <% end %>
+              <% else %>
+              <% end %>
+            </select>
+            <%= f.input :title, :placeholder => 'Title of Lead Measure', label: false %>
+            <%= f.input :description, label: 'Description (Optional)', :as => :text, :input_html => {:rows => 5} %>
+            <%= f.button :submit %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
