@@ -10,12 +10,12 @@ end
 
 pdf.move_down(5)
 
-teams = [["Team Name", "Completed Item Percentage", "Total Number of All Items"]]
+teams = [["Team Name", "Completed Item Percentage", "Total Number of Items In Past 2 Weeks"]]
 teams += @teams.map do |team|
   [
   team.name,
   team.qas.count > 0 ? ((team.qas.where(:completed => true).where("qas.created_at >= ?", 2.weeks.ago.utc).count / team.qas.where("qas.created_at >= ?", 2.weeks.ago.utc).count.to_f) * 100).to_i : 100,
-  team.qas.count > 0 ? team.qas.count : 0
+  team.qas.count > 0 ? team.qas.where("qas.created_at >= ?", 2.weeks.ago.utc).count : 0
   ]
 end
 
